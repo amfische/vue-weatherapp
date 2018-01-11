@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Weather App</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link rel="stylesheet" href="css/weather-icons.min.css">
+  <link rel="stylesheet" href="css/weather-icons-wind.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+
+</head>
+
+<body>
+  <div class="center-block">
+    <div id="weather">
+      
+      <div class="display">
+        <h1 v-text="city"></h1>
+        <div v-if="!loading" class="icon">
+          <i :class="['wi', icon]"></i>
+        </div>
+        <div v-if="loading" class="icon">
+          <i class="fa fa-spinner fa-spin"></i>
+        </div>
+        <div class="temperature">
+          <p v-text="temp + ' &deg;' + unit"></p>
+          <p v-text="iconDescription"></p>
+        </div>
+        <div class="options">
+          <button @click="farenheight">Farenheight</button>
+          <button @click="celsius">Celsius</button>
+          <button @click="getLocalWeather">User Location</button>
+        </div>
+        <div class="city-search">
+          <input type="text" name="city" v-model="input" @keyup.enter="searchWeatherByCity">
+          <input type="submit" value="Search" @click="searchWeatherByCity">
+        </div>
+      </div>
+
+      <div class="description">
+        <h1>Weather Application</h1>
+        <ul class="fa-ul">
+          <li><i class="fa fa-li fa-angle-right"></i> Uses OpenWeatherMap API to get up-to-date weather information</li>
+          <li><i class="fa fa-li fa-angle-right"></i> Users location is determined by IP address</li>
+          <li><i class="fa fa-li fa-angle-right"></i> Search requires a city and/or country</li>
+          <li><i class="fa fa-li fa-angle-right"></i> Check out the <a href="https://github.com/amfische/vue-weatherapp">Git repository</a></li>
+        </ul>
+      </div>
+
+    </div> <!-- end #calculator -->
+  </div> <!-- end center-block -->
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+  <script src="https://use.fontawesome.com/d3c9e0b791.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
